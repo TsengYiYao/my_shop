@@ -1,9 +1,10 @@
-import 'package:flutter/material.dart';
+//import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import '../models/product.dart';
-import '../widgets/product_item.dart';
+import '../providers/products_provider.dart';
 
-class ProductsOverviewScreen extends StatelessWidget {
-  final List<Product> loadedProducts = [
+class Products with ChangeNotifier {
+  List<Product> _items = [
     Product(
       id: 'p1',
       title: 'Red Shirt',
@@ -38,27 +39,12 @@ class ProductsOverviewScreen extends StatelessWidget {
     ),
   ];
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('MyShop'),
-      ),
-      body: GridView.builder(
-        padding: const EdgeInsets.all(10.0),
-        itemCount: loadedProducts.length,
-        itemBuilder: (ctx, i) => ProductItem(
-          id: loadedProducts[i].id,
-          title: loadedProducts[i].title,
-          imageUrl: loadedProducts[i].imageUrl,
-        ),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          childAspectRatio: 3 / 2,
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 10,
-        ),
-      ),
-    );
+  List<Product> get items {
+    return [..._items];
+  }
+
+  void addProduct() {
+//    _items.add(value);
+    notifyListeners();
   }
 }
