@@ -47,4 +47,8 @@ class Products with ChangeNotifier {
 //    _items.add(value);
     notifyListeners();
   }
+
+  Product findById(String productId) {
+    return _items.firstWhere((prod) => prod.id == productId);
+  }
 }
