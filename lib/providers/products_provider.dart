@@ -1,6 +1,6 @@
 //import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
-import '../models/product.dart';
+import './product.dart';
 import '../providers/products_provider.dart';
 
 class Products with ChangeNotifier {
