@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:my_shop/providers/cart.dart';
+import 'package:my_shop/providers/cart.dart' show Cart;
 import 'package:provider/provider.dart';
+import 'package:my_shop/widgets/cart_item.dart' as ci;
 
 class CartScreen extends StatelessWidget {
   static const routeName = '/cart';
@@ -22,17 +23,14 @@ class CartScreen extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Text(
-                    'Total',
-                    style: TextStyle(fontSize: 20),
-                  ),
+                  Text('Total', style: TextStyle(fontSize: 20)),
                   Spacer(),
                   Chip(
                     label: Text(
                       '\$${cart.totalAmount}',
                       style: TextStyle(
-                        color: Theme.of(context).primaryTextTheme.title.color,
-                      ),
+                          color:
+                              Theme.of(context).primaryTextTheme.title.color),
                     ),
                     backgroundColor: Theme.of(context).primaryColor,
                   ),
@@ -40,9 +38,21 @@ class CartScreen extends StatelessWidget {
                     child: Text('ORDER NOW'),
                     onPressed: () {},
                     textColor: Theme.of(context).primaryColor,
-                  )
+                  ),
                 ],
               ),
+            ),
+          ),
+          SizedBox(height: 10),
+          Expanded(
+            child: ListView.builder(
+              itemBuilder: (ctx, i) => ci.CartItem(
+                id: cart.items.values.toList()[i].id,
+                title: cart.items.values.toList()[i].title,
+                quantity: cart.items.values.toList()[i].quantity,
+                price: cart.items.values.toList()[i].price,
+              ),
+              itemCount: cart.itemCount,
             ),
           )
         ],
