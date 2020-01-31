@@ -19,4 +19,5 @@ finished ch8 16. Exploring Alternative Provider Syntaxes
 18. finished
 start 21.
 22. 10:09
-24. finished
+24. finished 
+29. finished

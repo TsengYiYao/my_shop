@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:my_shop/widgets/app_drawer.dart';
 import 'package:provider/provider.dart';
 import 'package:my_shop/providers/orders.dart' show Orders;
 import 'package:my_shop/widgets/order_item.dart';
 
 class OrdersScreen extends StatelessWidget {
+  static const routName = '/orders';
+
   @override
   Widget build(BuildContext context) {
     final orderData = Provider.of<Orders>(context);
@@ -15,6 +18,7 @@ class OrdersScreen extends StatelessWidget {
         itemBuilder: (ctx, i) => OrderItem(orderData.orders[i]),
         itemCount: orderData.orders.length,
       ),
+      drawer: AppDrawer(),
     );
   }
 }
